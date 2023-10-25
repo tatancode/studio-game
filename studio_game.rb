@@ -1,17 +1,53 @@
-#Welcome message
-puts "Let's play a game!\n\n 3 \n 2 \n 1"
-welcome_emoji = "🚀"
-puts welcome_emoji * 20
 
-# Player data
-name = "finn"
-health = 60
+# Player Class definition
+class Player
+  #attributes
+  #attr_reader :name, :health
+  attr_accessor :name, :health
+  def initialize(name,health = 100)
+    @name = name.capitalize
+    @health = health
+  end
 
 
-# helper method that prints Health Info -uses keyword parameters-
-def health_info(name:,health:)
-  health_status = "#{name.capitalize}'s health is #{health}"
-  puts health_status
+  def to_s
+    "I'm #{@name.capitalize} with a health of #{@health} and a score of #{score}"
+  end
+
+  def score
+    @health + @name.length
+  end
+
+  def boost
+    @health += 1
+  end
+
+  def drain
+    @health -= 1
+  end
 end
 
-health_info(health: health ,name: name )
+#initializing objects
+player_one = Player.new("Finn", 10)
+player_one.score
+puts player_one
+
+
+=begin
+player_two = Player.new("Phoebs", 10)
+puts player_two
+player_two.drain
+puts player_two
+
+player_three = Player.new("Tuck")
+puts player_three
+player_three.boost
+player_three.boost
+puts player_three
+
+player_four = Player.new("Celeste")
+puts player_four
+player_four.drain
+player_four.boost
+puts player_four
+=end
